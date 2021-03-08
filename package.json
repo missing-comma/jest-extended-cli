@@ -1,9 +1,10 @@
 {
 	"name": "@missing-comma/jest-extended-cli",
-	"version": "0.0.2",
+	"version": "0.0.4",
 	"description": "Extended Utilities for jest command-line interface",
-	"main": "index.js",
-	"type": "module",
+	"main": "./dist/index.js",
+	"module": "./dist/index.js",
+	"types": "./dist",
 	"publishConfig": {
 		"access": "public"
 	},
