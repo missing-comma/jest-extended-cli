@@ -15,9 +15,9 @@
 		".[ehlnp]*": false,
 		"**/.npmrc": false,
 		"**/tsconfig.json": false,
-		"**/node_modules/[^t]*": true,
-		"**/node_modules/t[^h]*": true,
-		"**/node_modules/th[^o]*": true
+		"**/node_modules/[^m]*": false,
+		"**/node_modules/m[^i]*": false,
+		"**/node_modules/mi[^s]*": false
 	},
 	"git.ignoreLimitWarning": true
 }

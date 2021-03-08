@@ -1,5 +1,11 @@
 import { Config as JestConfig } from '@jest/types';
-import { ExtendedCLIOptions } from './extended-CLI-options';
-export type Config = JestConfig.InitialOptions & {
-	extendedOptions?: Partial<ExtendedCLIOptions>;
+import { AdditionalConfigs } from './extended-cli-configs';
+export type Config = Config.Regular & {
+	extendedOptions?: Partial<AdditionalConfigs>;
 };
+
+export namespace Config {
+	export type Additional = AdditionalConfigs;
+
+	export type Regular = JestConfig.InitialOptions;
+}

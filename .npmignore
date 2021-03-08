@@ -1,8 +1,11 @@
 README.md
-jest.config.json
+node_modules
+jest.config.ts
 test/
 src
 tsconfig.json
 tslint.json
 .prettierrc
-test-usage
+.vscode
+yarn-error.log
+test.js

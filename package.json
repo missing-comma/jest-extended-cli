@@ -3,8 +3,26 @@
 	"version": "0.0.0",
 	"description": "Extended Utilities for jest command-line interface",
 	"main": "index.js",
+	"type": "module",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"test:fuck": "node .\\test.js",
+		"dev": "yarn build && yarn addAssets && tsc-watch --onSuccess \"yarn fixPaths\"",
+		"addAssets": "echo copyfiles -u 1 \"src/**/!(*.js|*.jsx|*.map|*.ts|*.tsx)\" dist/",
+		"fixPaths": "tscpaths -p tsconfig.json -s ./src -o ./dist",
+		"build": "yarn tsc && yarn fixPaths ",
+		"build:test": "yarn tsc",
+		"test": "cross-env APP_ENV=testing jest --passWithNoTests --silent --noStackTrace --runInBand",
+		"test:verbose": "cross-env APP_ENV=testing jest --passWithNoTests --runInBand",
+		"test:unit": "cross-env TEST_SCOPE=unit yarn test --watch",
+		"test:int": "cross-env TEST_SCOPE=integration yarn test --watch",
+		"test:staged": "cross-env TEST_SCOPE=staged yarn test --watch",
+		"test:ci": "cross-env TEST_SCOPE=ci yarn test --coverage",
+		"format": "prettier --write \"src/**/*.ts\"",
+		"lint": "echo tslint -p tsconfig.json",
+		"prepublishOnly": "npm run test:deploy && npm run lint",
+		"preversion": "npm run lint",
+		"version": "yarn build && npm run format && git add -A src",
+		"postversion": "git push && git push --tags"
 	},
 	"repository": {
 		"type": "git",
@@ -18,13 +36,17 @@
 	"homepage": "https://github.com/missing-comma/jest-extended-cli#readme",
 	"dependencies": {
 		"@missing-comma/thoth-cli": "^0.0.0",
-		"jest": "^26.6.3"
+		"hjson": "^3.2.2",
+		"jest": "^26.6.3",
+		"jest-cli": "^26.6.3"
 	},
 	"devDependencies": {
 		"@types/jest": "^26.0.20",
+		"@types/jest-cli": "^24.3.0",
 		"@typescript-eslint/eslint-plugin": "^4.14.1",
 		"@typescript-eslint/parser": "^4.14.1",
 		"cross-env": "^7.0.3",
+		"jest-extended": "^0.11.5",
 		"prettier": "^2.2.1",
 		"ts-jest": "^26.5.0",
 		"ts-node": "^9.1.1",
@@ -33,5 +55,8 @@
 		"tslint": "^6.1.3",
 		"tslint-config-prettier": "^1.18.0",
 		"typescript": "^4.2.2"
+	},
+	"peerDependencies": {
+		"jest-extended": "^0.11.5"
 	}
 }
