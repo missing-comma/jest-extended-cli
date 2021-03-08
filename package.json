@@ -1,9 +1,12 @@
 {
 	"name": "@missing-comma/jest-extended-cli",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "Extended Utilities for jest command-line interface",
 	"main": "index.js",
 	"type": "module",
+	"publishConfig": {
+		"access": "public"
+	},
 	"scripts": {
 		"test:fuck": "node .\\test.js",
 		"dev": "yarn build && yarn addAssets && tsc-watch --onSuccess \"yarn fixPaths\"",
@@ -17,6 +20,7 @@
 		"test:int": "cross-env TEST_SCOPE=integration yarn test --watch",
 		"test:staged": "cross-env TEST_SCOPE=staged yarn test --watch",
 		"test:ci": "cross-env TEST_SCOPE=ci yarn test --coverage",
+		"test:deploy": "cross-env TEST_SCOPE=deploy yarn test",
 		"format": "prettier --write \"src/**/*.ts\"",
 		"lint": "echo tslint -p tsconfig.json",
 		"prepublishOnly": "npm run test:deploy && npm run lint",
