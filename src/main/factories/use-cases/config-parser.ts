@@ -1,4 +1,4 @@
-import { ConfigParserAdapter } from '~cli/prasentation';
+import { ConfigParserAdapter } from '~cli/presentation';
 import { ApplyConfigTransformationAdapter } from '~cli/data/use-cases/apply-config-transformation-adapter';
 
 export const makeConfigParser = () => {
