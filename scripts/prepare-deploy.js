@@ -2,7 +2,7 @@ const oldFs = require('fs');
 const { run, fs, constants, attempt } = require('./helper');
 
 const toCopy = [
-	'package.deploy.json',
+	// 'package.deploy.json',
 	'.npmrc',
 	'LICENSE',
 	'.npmignore'
@@ -31,6 +31,21 @@ async function copyDependencies() {
 	}
 }
 
+async function generatePackageJson() {
+	const packageJSON = require('../package.json');
+
+	const buildPackageJSON = {
+		...packageJSON,
+		main: "./dist/index.js",
+		module: "./dist/index.js",
+		types: "./dist",
+		name: "@missing-comma/jest-extended-cli",
+		scripts: {}
+	};
+
+	oldFs.writeFileSync('./build/package.json', JSON.stringify(buildPackageJSON, null, 2), { encoding: 'utf-8' });
+}
+
 function setup() {
 	// constants.turnOn('DEBUG');
 }
@@ -41,7 +56,9 @@ async function main() {
 	await attempt('rm build', () => fs.remove('./build'));
 	await attempt('cp dist', () => run('cp -r ./dist ./build'));
 	await attempt('cp dependencies', copyDependencies);
-	await attempt('rename package.deploy.json', () => fs.rename('./build/package.deploy.json', './build/package.json'))
+	await generatePackageJson();
+	// await attempt('rename package.deploy.json', () => fs.rename('./build/package.deploy.json', './build/package.json'))
+	console.log('done');
 }
 
 main().catch(console.error);

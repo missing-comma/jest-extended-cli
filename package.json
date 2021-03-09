@@ -1,5 +1,5 @@
 {
-	"name": "@missing-comma/jest-extended-cli-build",
+	"name": "--empty--",
 	"version": "0.0.6",
 	"description": "Extended Utilities for jest command-line interface",
 	"main": "./dist/index.js",
