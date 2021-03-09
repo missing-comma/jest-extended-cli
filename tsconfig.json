@@ -16,5 +16,14 @@
 			"~cli/*": ["./*"]
 		}
 	},
-	"exclude": ["node_modules", "dist", "test", "**/__tests__/*", "jest.config.*", "test-usage", "src/usage.ts"]
+	"exclude": [
+		"node_modules",
+		"dist",
+		"build",
+		"test",
+		"**/__tests__/*",
+		"jest.config.*",
+		"test-usage",
+		"src/usage.ts"
+	]
 }
